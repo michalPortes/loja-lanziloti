@@ -5,7 +5,7 @@ import Navigation from './routes/navigation/navigation.component.jsx'
 import SingIn from './routes/sing-in/sing-in.component.jsx'
 
 const Shop = () => {
-  return <h1>I am the shop page</h1>
+  return <h1> I am the shop page</h1>
 }
 
 const App = () => {
