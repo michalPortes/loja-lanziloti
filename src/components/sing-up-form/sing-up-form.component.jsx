@@ -18,8 +18,6 @@ const SingUpForm = () => {
 
   const {displayName, email, password, confirmPassword} = formFields;
 
-  console.log(formFields)
-
   const resetFormFields = () => {
     setFormFields(defaulFormFields)
   }
@@ -55,7 +53,7 @@ const SingUpForm = () => {
   }
   
   return(
-    <div className='sing-in-container'>
+    <div className='sing-up-container'>
       <h2>Don't have an account?</h2>
       <span>Sing up with your email and password</span>
       <form onSubmit={ handleSubmit }>
