@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.component'
+
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
+
 import './sing-up-form.styles.scss'
 
 
@@ -15,7 +17,6 @@ const defaulFormFields = {
 const SingUpForm = () => {
   
   const [formFields, setFormFields] = useState(defaulFormFields)
-
   const {displayName, email, password, confirmPassword} = formFields;
 
   const resetFormFields = () => {
@@ -93,7 +94,7 @@ const SingUpForm = () => {
           value={ confirmPassword }
         />
 
-        <Button  type='submit'>Sin Up</Button>
+        <Button  type='submit'>Sign Up</Button>
       </form>
     </div>
   )

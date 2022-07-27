@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 
 import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.component'
@@ -17,24 +17,26 @@ const defaulFormFields = {
 const SingInForm = () => {
   
   const [formFields, setFormFields] = useState(defaulFormFields)
-
   const {email, password} = formFields;
+
 
   const resetFormFields = () => {
     setFormFields(defaulFormFields)
   }
 
   const singInWithGoogle = async () => {
-    const { user } = await singInWithGooglePopup();
-    await createUserDocumentFromAuth(user)
+    await singInWithGooglePopup();
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
 
     try {
-      const response = await signInAuthUserWithEmailAndPassword(email, password);
-      console.log(response)
+      const { user } = await signInAuthUserWithEmailAndPassword(
+        email, 
+        password
+      );
+
       resetFormFields();
     } catch (error) {
       switch (error.code){
@@ -79,9 +81,9 @@ const SingInForm = () => {
           value={ password }
         />
         <div className='buttons-container'>
-          <Button  type='submit'>Sin In</Button>
+          <Button  type='submit'>Sign In</Button>
           <Button type='button' buttonType='google' onClick={ singInWithGoogle }>
-            Google sin in
+            Google sign in
           </Button>
         </div>
       </form>
