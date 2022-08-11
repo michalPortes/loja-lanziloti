@@ -7,6 +7,8 @@ import { UserContext } from '../../context/user.context'
 import { signOutUser } from '../../utils/firebase/firebase.utils'
 
 import './navigation.styles.scss'
+
+
 const Navigation = () => {
 
   const { currentUser } = useContext(UserContext)
@@ -22,7 +24,6 @@ const Navigation = () => {
           <Link className="nav-link" to='/shop'>
             SHOP
           </Link>
-
           {
             currentUser ? (
               <span className='nav-link' onClick={signOutUser}>
