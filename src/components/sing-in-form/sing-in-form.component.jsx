@@ -1,12 +1,11 @@
-import { useState, useContext } from 'react'
-
+import { useState } from 'react'
 import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.component'
 
-import { singInWithGooglePopup, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils'
+import { singInWithGooglePopup, signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils'
 
 
-import './sing-in-form.styles.scss'
+import { SingUpContainer, TextHs, ButtonContainer } from './sing-in-form.styles'
 
 
 const defaulFormFields = {
@@ -15,9 +14,9 @@ const defaulFormFields = {
 }
 
 const SingInForm = () => {
-  
+
   const [formFields, setFormFields] = useState(defaulFormFields)
-  const {email, password} = formFields;
+  const { email, password } = formFields;
 
 
   const resetFormFields = () => {
@@ -33,13 +32,13 @@ const SingInForm = () => {
 
     try {
       const { user } = await signInAuthUserWithEmailAndPassword(
-        email, 
+        email,
         password
       );
 
       resetFormFields();
     } catch (error) {
-      switch (error.code){
+      switch (error.code) {
         case 'auth/wrong-password':
           alert('incorrect password for email')
           break
@@ -54,40 +53,40 @@ const SingInForm = () => {
 
 
   const handleChange = (event) => {
-    const {name, value} = event.target;
-    setFormFields({...formFields, [ name ]: value});
+    const { name, value } = event.target;
+    setFormFields({ ...formFields, [name]: value });
   }
-  
-  return(
-    <div className='sing-up-container'>
-      <h2>Already have an account?</h2>
+
+  return (
+    <SingUpContainer>
+      <TextHs>Already have an account?</TextHs>
       <span>Sing up with your email and password</span>
-      <form onSubmit={ handleSubmit }>
-        <FormInput 
-        label='Email' 
-        type='email' 
-        required 
-        onChange={ handleChange } 
-        name='email' 
-        value={ email }
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          label='Email'
+          type='email'
+          required
+          onChange={handleChange}
+          name='email'
+          value={email}
         />
 
-        <FormInput 
-          label='Password' 
-          type='password' 
-          required 
-          onChange={ handleChange } 
-          name='password' 
-          value={ password }
+        <FormInput
+          label='Password'
+          type='password'
+          required
+          onChange={handleChange}
+          name='password'
+          value={password}
         />
-        <div className='buttons-container'>
-          <Button  type='submit'>Sign In</Button>
-          <Button type='button' buttonType='google' onClick={ singInWithGoogle }>
+        <ButtonContainer>
+          <Button type='submit'>Sign In</Button>
+          <Button type='button' buttonType='google' onClick={singInWithGoogle}>
             Google sign in
           </Button>
-        </div>
+        </ButtonContainer>
       </form>
-    </div>
+    </SingUpContainer>
   )
 }
 
